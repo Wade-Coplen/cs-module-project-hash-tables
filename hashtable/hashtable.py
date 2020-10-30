@@ -22,6 +22,7 @@ class HashTable:
 
     def __init__(self, capacity):
         # Your code here
+        self.capacity = capacity
 
 
     def get_num_slots(self):
@@ -36,7 +37,7 @@ class HashTable:
         """
         # Your code here
 
-
+        return len()
     def get_load_factor(self):
         """
         Return the load factor for this hash table.
@@ -54,7 +55,14 @@ class HashTable:
         """
 
         # Your code here
-
+        hash = 14695981039346656037;
+        #if statement checking to make sure the key is bits
+        if not isinstance(key, bytes):
+            key = key.encode('UTF-8', 'ignore')
+        for bit_of_data in key:
+            hash = hash ^ bit_of_data;
+            hash = hash * 1099511628211;
+        return hash
 
     def djb2(self, key):
         """
