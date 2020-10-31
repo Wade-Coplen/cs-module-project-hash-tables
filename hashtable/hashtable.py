@@ -120,7 +120,7 @@ class HashTable:
         if self.storage[index] == None:
             print('No key found')
         else: 
-            self.storage[index] = None
+            self.storage[index] == None
             self.load -= 1
 
 
