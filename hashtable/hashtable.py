@@ -3,11 +3,18 @@ class HashTableEntry:
     Linked List hash table key/value pair
     """
     def __init__(self, key, value):
-        self.key = key
-        self.value = value
-        self.next = None
-
-
+        #self.key = key
+        #self.value = value
+        self.head = self.Node((key, value))
+    class Node:
+        def __init__(self, value):
+            self.value = value
+            self.next = None
+#find
+##find the node with the key
+#inserathead
+#delete based on key
+#getasarray
 # Hash table can't have fewer than this many slots
 MIN_CAPACITY = 8
 
@@ -40,6 +47,7 @@ class HashTable:
         # Your code here
 
         return len(self.storage)
+
     def get_load_factor(self):
         """
         Return the load factor for this hash table.
@@ -47,7 +55,7 @@ class HashTable:
         Implement this.
         """
         # Your code here
-
+        return self.load/self.capacity
 
     def fnv1(self, key):
         """
@@ -55,16 +63,19 @@ class HashTable:
 
         Implement this, and/or DJB2.
         """
-
+    
         # Your code here
-        hash = 14695981039346656037;
-        #if statement checking to make sure the key is bits
-        if not isinstance(key, bytes):
-            key = key.encode('UTF-8', 'ignore')
-        for bit_of_data in key:
-            hash = hash ^ bit_of_data;
-            hash = hash * 1099511628211;
-        return hash
+    
+        offset = 14695981039346656037 
+        prime = 1099511628211
+        hashed = offset
+
+        bits_to_hash = key.encode()
+
+        for bit in bits_to_hash:
+            hashed = hashed * prime
+            hashed = hashed^bit
+        return hashed
 
     def djb2(self, key):
         """
@@ -120,7 +131,7 @@ class HashTable:
         if self.storage[index] == None:
             print('No key found')
         else: 
-            self.storage[index] == None
+            self.storage[index] = None
             self.load -= 1
 
 
@@ -149,6 +160,16 @@ class HashTable:
         Implement this.
         """
         # Your code here
+        array_from_old_storage = self.storage
+        self.capacity = new_capacity
+        self.storage = [None] * self.capacity
+        for i in array_from_old_storage:
+            if i is !None:
+                node = i.head
+                while node.next is !None:
+        #LL method
+                    
+
 
 
 
